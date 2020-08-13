@@ -4,4 +4,10 @@
     <string name="title_search">Search</string>
     <string name="title_save">Save</string>
     <string name="title_profile">Profile</string>
+
+    <string name="fragment_home">This is home fragment</string>
+    <string name="fragment_search">This is search fragment</string>
+    <string name="fragment_save">This is save fragment</string>
+    <string name="fragment_profile">This is profile fragment</string>
+
 </resources>
