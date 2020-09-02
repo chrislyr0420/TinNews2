@@ -1,13 +1,20 @@
 package com.laioffer.tinnews2;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.laioffer.tinnews2.model.NewsResponse;
+import com.laioffer.tinnews2.network.NewsApi;
+import com.laioffer.tinnews2.network.RetrofitClient;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * The Main Activity of TinNews app
@@ -28,6 +35,24 @@ public class TinNewsMainActivity extends AppCompatActivity {
         navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(navView, navController);
         NavigationUI.setupActionBarWithNavController(this, navController);
+
+        NewsApi testApi = RetrofitClient.newInstance(this).create(NewsApi.class);
+
+        testApi.getTopHeadlines("US").enqueue(new Callback<NewsResponse>() {
+            @Override
+            public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
+                if (response.isSuccessful()) {
+                    Log.d("getTopHeadlines-Success", response.body().toString());
+                } else {
+                    Log.d("getTopHeadlines-Failed", response.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<NewsResponse> call, Throwable t) {
+                Log.d("getTopHeadlines", t.toString());
+            }
+        });
     }
 
     @Override
