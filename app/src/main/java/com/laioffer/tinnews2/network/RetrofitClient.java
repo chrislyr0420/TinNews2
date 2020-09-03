@@ -2,6 +2,8 @@ package com.laioffer.tinnews2.network;
 
 import android.content.Context;
 
+import com.ashokvarma.gander.GanderInterceptor;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -19,8 +21,11 @@ public class RetrofitClient {
     private static final String BASE_URL = "https://newsapi.org/v2/";
 
     public static Retrofit newInstance(Context context) {
+
+        // Authentication with OkHttp interceptors
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
                 .addInterceptor(new HeaderInterceptor())
+                .addInterceptor(new GanderInterceptor(context).showNotification(true))
                 .build();
 
         return new Retrofit.Builder()
