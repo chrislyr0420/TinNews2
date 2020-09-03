@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.example.myapplication"
+        applicationId "com.laioffer.tinnews2"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -52,6 +52,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
     implementation 'com.squareup.retrofit2:retrofit:2.8.1'
 
+    // Stetho - debugging tool to view network requests and local database content
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
     // junit 4
     testImplementation 'junit:junit:4.13'
 
@@ -84,6 +87,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     androidTestImplementation "androidx.navigation:navigation-testing:2.3.0"
 
+    // Gander - debugging tool to view request status through app notice
     debugImplementation 'com.ashokvarma.android:gander-imdb:3.1.0'
     releaseImplementation 'com.ashokvarma.android:gander-no-op:3.1.0'
 }
