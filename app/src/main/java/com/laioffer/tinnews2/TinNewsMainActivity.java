@@ -35,24 +35,6 @@ public class TinNewsMainActivity extends AppCompatActivity {
         navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(navView, navController);
         NavigationUI.setupActionBarWithNavController(this, navController);
-
-        NewsApi testApi = RetrofitClient.newInstance(this).create(NewsApi.class);
-
-        testApi.getTopHeadlines("US").enqueue(new Callback<NewsResponse>() {
-            @Override
-            public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
-                if (response.isSuccessful()) {
-                    Log.d("getTopHeadlines-Success", response.body().toString());
-                } else {
-                    Log.d("getTopHeadlines-Failed", response.toString());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<NewsResponse> call, Throwable t) {
-                Log.d("getTopHeadlines", t.toString());
-            }
-        });
     }
 
     @Override
